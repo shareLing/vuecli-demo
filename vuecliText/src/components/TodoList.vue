@@ -5,7 +5,7 @@
     <!-- 当 add 事件触发时，就调用当前组件 addTodo 这个方法 -->
  <todo-add v-on:add="addTodo"></todo-add>
     <ul class="todos">
-      <li v-for="(todo, index )in todos" v-bind:key="todo.id" class="todo">
+      <li v-for="(todo, index) in todos" v-bind:key="todo.id" class="todo">
         <input
           type="checkbox"
           name=""
@@ -35,15 +35,17 @@
 <script>
 import TodoAdd from './TodoAdd.vue'
 export default {
-
   name: 'TodoList',
-  components: {
-      TodoAddcompletedCounts () {
+  computed: {
+      completedCounts () {
       return this.todos.filter(item => item.isCompleted).length
      },
      notCompletedCounts () {
       return this.todos.filter(item => !item.isCompleted).length
      }
+  },
+  components: {
+    TodoAdd
   },
   data: () => ({
     todos: [{
@@ -58,12 +60,12 @@ export default {
     completed(index) {
       this.todos[index].isCompleted = !this.todos[index].isCompleted
     },
-     addTodo() {
-        this.todos.push({
-          text: todo,
-          isCompleted: false
-        })
-      }
+    addTodo(todo) {
+      this.todos.push({
+        text:todo,
+        isCompleted: false
+      })
+    }
   }
 }
 </script>

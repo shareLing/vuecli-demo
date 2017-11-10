@@ -20,16 +20,19 @@
 <script>
 export default {
   name: 'addTodo',
-  data: () => ({
-    todo: ''
-  }),
+  data() {
+    return{
+       todo: ''
+    }
+   
+  },
   methods: {
     addTodo () {
       if (this.todo) {
-        this.$emit('add', this.todo)
-        this.todo = ''
+        this.$emit('add', this.todo);
+        this.todo = '';
       } else {
-        alert('内容不能为空')
+        alert('内容不能为空');
       }
     }
   }
